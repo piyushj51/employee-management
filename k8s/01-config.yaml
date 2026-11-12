@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+type: Opaque
+stringData:
+  SECRET_KEY: "310059c7630a24653baab8b288e6e173c3a53c181018836829e7bac1aaca1222"
+  POSTGRES_PASSWORD: "postgrespassword"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  ALGORITHM: "HS256"
+  ACCESS_TOKEN_EXPIRE_MINUTES: "30"
+  DATABASE_URL: "postgresql+psycopg://postgres:postgrespassword@postgres-svc:5432/employee_db"
